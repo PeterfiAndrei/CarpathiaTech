@@ -1,0 +1,119 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { config, formspreeEndpoint } from '../config';
+---
+
+<Section
+  id="contact"
+  eyebrow="Contact"
+  title="Let's talk about your QA"
+  subtitle="Book a call or send a message — we usually reply within one business day."
+>
+  <div class="grid gap-8 lg:grid-cols-5">
+    <!-- Left: direct ways to reach us -->
+    <div class="reveal lg:col-span-2">
+      <a
+        href={config.contact.calendlyUrl}
+        target="_blank"
+        rel="noopener"
+        class="flex items-center gap-3 rounded-xl border border-accent/30 bg-accent/10 p-5 transition-colors hover:border-accent/60"
+      >
+        <span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-accent text-[#04140f]">
+          <Icon name="calendar" class="h-6 w-6" />
+        </span>
+        <span>
+          <span class="block font-semibold text-fg">Book a call</span>
+          <span class="block text-sm text-muted">Pick a time that suits you</span>
+        </span>
+      </a>
+
+      <a
+        href={`mailto:${config.contact.email}`}
+        class="mt-4 flex items-center gap-3 rounded-xl border border-border bg-surface/50 p-5 transition-colors hover:border-accent/40"
+      >
+        <span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-surface-2 text-accent">
+          <Icon name="mail" class="h-6 w-6" />
+        </span>
+        <span>
+          <span class="block font-semibold text-fg">Email us</span>
+          <span class="block text-sm text-muted">{config.contact.email}</span>
+        </span>
+      </a>
+
+      <p class="mt-5 text-sm leading-relaxed text-muted">
+        Prefer async? Send the form and tell us about your product, your stack
+        and where quality hurts most. We'll come back with concrete next steps.
+      </p>
+    </div>
+
+    <!-- Right: Formspree-backed form -->
+    <form
+      class="reveal rounded-xl border border-border bg-surface/50 p-6 sm:p-7 lg:col-span-3"
+      action={formspreeEndpoint}
+      method="POST"
+    >
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="block text-sm">
+          <span class="mb-1.5 block font-medium text-fg">Name</span>
+          <input
+            type="text"
+            name="name"
+            autocomplete="name"
+            required
+            class="w-full rounded-lg border border-border bg-bg px-3 py-2.5 text-fg placeholder:text-faint focus:border-accent focus:outline-none"
+            placeholder="Jane Doe"
+          />
+        </label>
+        <label class="block text-sm">
+          <span class="mb-1.5 block font-medium text-fg">Work email</span>
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            required
+            class="w-full rounded-lg border border-border bg-bg px-3 py-2.5 text-fg placeholder:text-faint focus:border-accent focus:outline-none"
+            placeholder="jane@company.com"
+          />
+        </label>
+      </div>
+
+      <label class="mt-4 block text-sm">
+        <span class="mb-1.5 block font-medium text-fg">Company <span class="text-faint">(optional)</span></span>
+        <input
+          type="text"
+          name="company"
+          autocomplete="organization"
+          class="w-full rounded-lg border border-border bg-bg px-3 py-2.5 text-fg placeholder:text-faint focus:border-accent focus:outline-none"
+          placeholder="Acme Inc."
+        />
+      </label>
+
+      <label class="mt-4 block text-sm">
+        <span class="mb-1.5 block font-medium text-fg">How can we help?</span>
+        <textarea
+          name="message"
+          rows="4"
+          required
+          class="w-full resize-y rounded-lg border border-border bg-bg px-3 py-2.5 text-fg placeholder:text-faint focus:border-accent focus:outline-none"
+          placeholder="We're a Series A fintech and need help setting up E2E test automation for our web app…"
+        ></textarea>
+      </label>
+
+      <!-- Honeypot anti-spam field (hidden from humans). -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+
+      <button
+        type="submit"
+        class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-[#04140f] transition-colors hover:bg-accent-strong sm:w-auto"
+      >
+        Send message
+        <Icon name="arrow" class="h-4 w-4" />
+      </button>
+
+      <p class="mt-3 text-xs text-faint">
+        We sign an NDA before any engagement. Your details are only used to reply.
+      </p>
+    </form>
+  </div>
+</Section>

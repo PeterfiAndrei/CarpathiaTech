@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Must match `site` + `base` in astro.config.mjs.
+Sitemap: https://peterfiandrei.github.io/CarpathiaTech/sitemap-index.xml

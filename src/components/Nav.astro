@@ -1,0 +1,147 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { config } from '../config';
+
+const links = [
+  { href: '#services', label: 'Services' },
+  { href: '#how-we-work', label: 'How we work' },
+  { href: '#tech', label: 'Tech' },
+  { href: '#team', label: 'Team' },
+  { href: '#case-studies', label: 'Case studies' },
+  { href: '#faq', label: 'FAQ' },
+];
+---
+
+<header
+  id="site-nav"
+  class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-colors duration-300"
+>
+  <nav
+    class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8"
+    aria-label="Primary"
+  >
+    <a href="#top" class="rounded-md" aria-label={`${config.company.name} — home`}>
+      <Logo />
+    </a>
+
+    <!-- Desktop links -->
+    <ul class="hidden items-center gap-7 lg:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="text-sm text-muted transition-colors hover:text-fg"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hidden items-center gap-3 lg:flex">
+      <a
+        href="#contact"
+        class="text-sm font-medium text-muted transition-colors hover:text-fg"
+      >
+        Contact
+      </a>
+      <a
+        href={config.contact.calendlyUrl}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-[#04140f] transition-colors hover:bg-accent-strong"
+      >
+        <Icon name="calendar" class="h-4 w-4" />
+        Book a call
+      </a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button
+      id="nav-toggle"
+      type="button"
+      class="inline-flex items-center justify-center rounded-md p-2 text-fg lg:hidden"
+      aria-label="Open menu"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <svg id="nav-open-icon" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="nav-close-icon" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden border-t border-border bg-bg/95 backdrop-blur lg:hidden"
+  >
+    <ul class="space-y-1 px-5 py-4">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="block rounded-md px-2 py-2 text-base text-muted hover:bg-surface hover:text-fg"
+              data-nav-link
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-2">
+        <a
+          href={config.contact.calendlyUrl}
+          target="_blank"
+          rel="noopener"
+          class="block rounded-lg bg-accent px-4 py-2.5 text-center text-sm font-semibold text-[#04140f]"
+          data-nav-link
+        >
+          Book a call
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-nav');
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('nav-open-icon');
+  const closeIcon = document.getElementById('nav-close-icon');
+
+  // Solidify the nav background once the user scrolls past the hero top.
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 12) {
+      header.classList.add('border-border', 'bg-bg/80', 'backdrop-blur');
+    } else {
+      header.classList.remove('border-border', 'bg-bg/80', 'backdrop-blur');
+    }
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const setMenu = (open: boolean) => {
+    if (!menu || !toggle) return;
+    menu.classList.toggle('hidden', !open);
+    openIcon?.classList.toggle('hidden', open);
+    closeIcon?.classList.toggle('hidden', !open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    setMenu(!open);
+  });
+
+  // Close the mobile menu after following any link.
+  menu?.querySelectorAll('[data-nav-link]').forEach((el) =>
+    el.addEventListener('click', () => setMenu(false)),
+  );
+</script>

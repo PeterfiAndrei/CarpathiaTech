@@ -1,0 +1,30 @@
+---
+import Section from './Section.astro';
+import { techStack } from '../data/techStack';
+---
+
+<Section
+  id="tech"
+  eyebrow="Tech stack"
+  title="Tools we use every day"
+  subtitle="Built from the team's hands-on experience — ordered web-first."
+>
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      techStack.map((group) => (
+        <div class="reveal rounded-xl border border-border bg-surface/40 p-5">
+          <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">
+            {group.label}
+          </h3>
+          <ul class="flex flex-wrap gap-2">
+            {group.items.map((item) => (
+              <li class="rounded-md border border-border bg-surface-2 px-2.5 py-1 text-sm text-muted">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>

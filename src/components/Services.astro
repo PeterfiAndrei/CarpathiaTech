@@ -1,0 +1,79 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+import { practices, beyondWeb } from '../data/services';
+---
+
+<Section
+  id="services"
+  eyebrow="Services"
+  title="Senior QA, embedded in your team"
+  subtitle="Our first practice is QA & Test Automation. Web is where we lead — everything else builds around it."
+>
+  {
+    practices.map((practice) => (
+      <div>
+        {practices.length > 1 && (
+          <h3 class="reveal mb-6 text-xl font-semibold text-fg">{practice.name}</h3>
+        )}
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {practice.services.map((s) => (
+            <article
+              class={`reveal group flex flex-col rounded-xl border bg-surface/50 p-6 transition-colors ${
+                s.featured
+                  ? 'border-accent/30 hover:border-accent/60'
+                  : 'border-border hover:border-border/80'
+              }`}
+            >
+              <span
+                class={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-lg ${
+                  s.featured ? 'bg-accent/15 text-accent' : 'bg-surface-2 text-muted'
+                }`}
+              >
+                <Icon name={s.icon} class="h-6 w-6" />
+              </span>
+              <h4 class="text-lg font-semibold text-fg">{s.title}</h4>
+              <p class="mt-2 text-sm leading-relaxed text-muted">
+                <span class="text-faint">The problem:</span> {s.problem}
+              </p>
+              <p class="mt-3 text-sm leading-relaxed text-muted">{s.what}</p>
+              <ul class="mt-4 space-y-1.5 border-t border-border pt-4 text-sm text-muted">
+                {s.deliverables.map((d) => (
+                  <li class="flex items-start gap-2">
+                    <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))
+  }
+
+  <!-- Beyond web: secondary capabilities, mentioned not hidden -->
+  <div class="reveal mt-14 rounded-xl border border-border bg-surface/30 p-6 sm:p-8">
+    <div class="mb-6 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+      <h3 class="text-xl font-semibold text-fg">Beyond web</h3>
+      <p class="text-sm text-muted">
+        Web leads, but the team's experience runs deeper.
+      </p>
+    </div>
+    <div class="grid gap-5 sm:grid-cols-3">
+      {
+        beyondWeb.map((b) => (
+          <div class="flex gap-3">
+            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface-2 text-accent">
+              <Icon name={b.icon} class="h-5 w-5" />
+            </span>
+            <div>
+              <h4 class="font-medium text-fg">{b.title}</h4>
+              <p class="mt-1 text-sm leading-relaxed text-muted">{b.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Section>

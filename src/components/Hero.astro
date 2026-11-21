@@ -1,0 +1,65 @@
+---
+import Icon from './Icon.astro';
+import { config } from '../config';
+---
+
+<section id="top" class="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+  <!-- Background grid + accent glow -->
+  <div class="pointer-events-none absolute inset-0 bg-grid [mask-image:radial-gradient(70%_60%_at_50%_0%,black,transparent)]" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-0 bg-glow" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
+    <p class="reveal mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-sm text-muted">
+      <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+      {config.company.firstPractice} · EU-based, US hours
+    </p>
+
+    <h1 class="reveal text-4xl font-semibold leading-[1.1] sm:text-6xl">
+      <span class="text-gradient">QA team on demand</span>
+    </h1>
+
+    <p class="reveal mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
+      Dedicated senior QA engineers who join your product team and own quality
+      from day one — with <span class="text-fg">web test automation</span> as
+      our core strength.
+    </p>
+
+    <div class="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a
+        href={config.contact.calendlyUrl}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 text-base font-semibold text-[#04140f] transition-colors hover:bg-accent-strong sm:w-auto"
+      >
+        <Icon name="calendar" class="h-5 w-5" />
+        Book a call
+      </a>
+      <a
+        href="#services"
+        class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-border bg-surface/50 px-6 py-3 text-base font-medium text-fg transition-colors hover:border-accent/60 hover:bg-surface sm:w-auto"
+      >
+        See our services
+        <Icon name="arrow" class="h-4 w-4" />
+      </a>
+    </div>
+
+    <!-- Supporting stats -->
+    <dl class="reveal mx-auto mt-14 grid max-w-xl grid-cols-3 gap-4 border-t border-border pt-8">
+      <div>
+        <dt class="sr-only">Experience</dt>
+        <dd class="text-2xl font-semibold text-fg sm:text-3xl">{config.stats.yearsLabel}</dd>
+        <p class="mt-1 text-sm text-muted">years of QA experience</p>
+      </div>
+      <div>
+        <dt class="sr-only">Senior engineers</dt>
+        <dd class="text-2xl font-semibold text-fg sm:text-3xl">{config.stats.engineers}</dd>
+        <p class="mt-1 text-sm text-muted">senior QA engineers</p>
+      </div>
+      <div>
+        <dt class="sr-only">Technologies</dt>
+        <dd class="text-2xl font-semibold text-fg sm:text-3xl">{config.stats.technologies}</dd>
+        <p class="mt-1 text-sm text-muted">tools & frameworks</p>
+      </div>
+    </dl>
+  </div>
+</section>

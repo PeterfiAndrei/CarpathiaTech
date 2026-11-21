@@ -1,0 +1,35 @@
+---
+import Section from './Section.astro';
+import { process } from '../data/process';
+---
+
+<Section
+  id="how-we-work"
+  alt
+  eyebrow="How we work"
+  title="From intro call to embedded delivery"
+  subtitle="A simple, transparent engagement — designed so you can start fast and scale on your terms."
+>
+  <ol class="relative grid gap-6 md:grid-cols-5">
+    <!-- connecting line (desktop) -->
+    <div
+      class="pointer-events-none absolute left-0 right-0 top-5 hidden h-px bg-gradient-to-r from-transparent via-border to-transparent md:block"
+      aria-hidden="true"
+    >
+    </div>
+    {
+      process.map((step, i) => (
+        <li class="reveal relative flex flex-col">
+          <span
+            class="z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/40 bg-bg font-semibold text-accent"
+            aria-hidden="true"
+          >
+            {i + 1}
+          </span>
+          <h3 class="mt-4 font-semibold text-fg">{step.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

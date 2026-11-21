@@ -1,0 +1,49 @@
+---
+import Section from './Section.astro';
+import Icon from './Icon.astro';
+
+const points = [
+  {
+    icon: 'lock',
+    title: 'NDA before anything',
+    body: 'We sign your NDA before any access or engagement. Standard, no friction.',
+  },
+  {
+    icon: 'shield',
+    title: 'Least-privilege access',
+    body: 'We take only the access we need, and no client data ever leaves your systems.',
+  },
+  {
+    icon: 'clock',
+    title: 'Any time zone',
+    body: 'EU-based, but we work your hours — full overlap with US East and West Coast.',
+  },
+  {
+    icon: 'chat',
+    title: 'In your tools',
+    body: 'Slack, Jira, standups, sprint demos — we work as part of your team, not a silo.',
+  },
+];
+---
+
+<Section
+  id="security"
+  alt
+  eyebrow="Security & collaboration"
+  title="Built for how US teams work"
+  subtitle="EU-based and GDPR-aware, with security and communication handled the way you'd expect."
+>
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      points.map((p) => (
+        <div class="reveal rounded-xl border border-border bg-surface/50 p-6">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-accent/15 text-accent">
+            <Icon name={p.icon} class="h-6 w-6" />
+          </span>
+          <h3 class="mt-4 font-semibold text-fg">{p.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</Section>

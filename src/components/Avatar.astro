@@ -1,0 +1,41 @@
+---
+/**
+ * Team avatar. If a real photo exists at public/team/<photo> it is used;
+ * otherwise we render a neutral initial placeholder.
+ *
+ * NOTE: because photos may not exist yet, we don't import them (a missing
+ * import would fail the build). Instead we reference them by public URL and
+ * always render the initials placeholder underneath, hidden only when the
+ * image actually loads.  TODO: add real photos to public/team/.
+ */
+import { getImageUrl } from '../utils/url';
+
+interface Props {
+  firstName: string;
+  photo: string;
+  class?: string;
+}
+const { firstName, photo, class: className = '' } = Astro.props;
+const initials = firstName.trim().charAt(0).toUpperCase();
+const src = getImageUrl(`team/${photo}`);
+---
+
+<span
+  class={`relative inline-flex items-center justify-center overflow-hidden rounded-full bg-surface-2 border border-border ${className}`}
+>
+  <span
+    aria-hidden="true"
+    class="select-none text-xl font-semibold text-accent"
+  >
+    {initials}
+  </span>
+  <!-- If the photo is present it covers the initials; if it 404s it's hidden. -->
+  <img
+    src={src}
+    alt={`${firstName}, QA engineer at Carpathia Tech`}
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 h-full w-full object-cover"
+    onerror="this.style.display='none'"
+  />
+</span>

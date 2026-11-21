@@ -1,0 +1,42 @@
+---
+/**
+ * Consistent section shell: anchor id, vertical rhythm, max-width container,
+ * and an optional (reveal-on-scroll) heading block.
+ */
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  /** Alternate (slightly lighter) background band. */
+  alt?: boolean;
+  class?: string;
+}
+const { id, eyebrow, title, subtitle, alt = false, class: className = '' } = Astro.props;
+---
+
+<section
+  id={id}
+  class={`relative py-20 sm:py-28 ${alt ? 'bg-surface/40' : ''} ${className}`}
+>
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    {
+      (eyebrow || title || subtitle) && (
+        <div class="reveal mx-auto mb-14 max-w-2xl text-center">
+          {eyebrow && (
+            <p class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+              {eyebrow}
+            </p>
+          )}
+          {title && (
+            <h2 class="text-3xl font-semibold sm:text-4xl">{title}</h2>
+          )}
+          {subtitle && (
+            <p class="mt-4 text-lg leading-relaxed text-muted">{subtitle}</p>
+          )}
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</section>

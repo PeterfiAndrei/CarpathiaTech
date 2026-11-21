@@ -1,0 +1,44 @@
+---
+import Section from './Section.astro';
+import Avatar from './Avatar.astro';
+import Icon from './Icon.astro';
+import { team } from '../data/team';
+---
+
+<Section
+  id="team"
+  alt
+  eyebrow="Team"
+  title="The engineers you'll actually work with"
+  subtitle="A small, senior team — no hand-offs to juniors, no account managers in between."
+>
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      team.map((member) => (
+        <article class="reveal flex flex-col rounded-xl border border-border bg-surface/50 p-6">
+          <div class="flex items-center gap-4">
+            <Avatar firstName={member.firstName} photo={member.photo} class="h-16 w-16" />
+            <div>
+              <h3 class="text-lg font-semibold text-fg">{member.firstName}</h3>
+              <p class="text-sm text-accent">{member.role}</p>
+              <p class="mt-0.5 flex items-center gap-1 text-xs text-muted">
+                <Icon name="clock" class="h-3.5 w-3.5" />
+                {member.years}
+              </p>
+            </div>
+          </div>
+
+          <p class="mt-4 text-sm leading-relaxed text-muted">{member.bio}</p>
+
+          <ul class="mt-4 flex flex-wrap gap-1.5 border-t border-border pt-4">
+            {member.skills.map((skill) => (
+              <li class="rounded-md bg-surface-2 px-2 py-0.5 text-xs text-muted">
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</Section>

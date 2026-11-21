@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <!-- TODO: for best social-platform rendering, export this as a 1200x630 PNG
+       and update the og:image reference in BaseLayout.astro. -->
+  <rect width="1200" height="630" fill="#08090c" />
+  <!-- subtle grid -->
+  <g stroke="#ffffff" stroke-opacity="0.04">
+    <path d="M0 48H1200M0 96H1200M0 144H1200M0 192H1200M0 240H1200M0 288H1200M0 336H1200M0 384H1200M0 432H1200M0 480H1200M0 528H1200M0 576H1200" />
+    <path d="M48 0V630M96 0V630M144 0V630M192 0V630M240 0V630M288 0V630M336 0V630M384 0V630M432 0V630M480 0V630M528 0V630M576 0V630M624 0V630M672 0V630M720 0V630M768 0V630M816 0V630M864 0V630M912 0V630M960 0V630M1008 0V630M1056 0V630M1104 0V630M1152 0V630" />
+  </g>
+  <!-- accent glow -->
+  <ellipse cx="600" cy="0" rx="520" ry="300" fill="#2dd4a7" fill-opacity="0.12" />
+
+  <!-- logo mark -->
+  <g transform="translate(100,110)">
+    <path d="M0 70 L30 14 L48 48 L60 22 L96 70 Z" fill="none" stroke="#2dd4a7" stroke-width="6" stroke-linejoin="round" />
+    <path d="M30 60 L42 72 L66 44" fill="none" stroke="#e8eaf0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <text x="212" y="178" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="600" fill="#e8eaf0">Carpathia Tech</text>
+
+  <!-- headline -->
+  <text x="100" y="330" font-family="Inter, Arial, sans-serif" font-size="88" font-weight="700" fill="#e8eaf0" letter-spacing="-2">QA team on demand</text>
+  <text x="100" y="400" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="400" fill="#9aa2b1">Senior QA engineers embedded in your product team.</text>
+  <text x="100" y="446" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="400" fill="#9aa2b1">Web test automation as the core strength.</text>
+
+  <!-- footer line -->
+  <rect x="100" y="520" width="1000" height="1.5" fill="#20242c" />
+  <text x="100" y="566" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="500" fill="#2dd4a7">EU-based · US hours · NDA-ready</text>
+</svg>
