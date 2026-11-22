@@ -24,7 +24,7 @@ export const config = {
     // TODO: replace with the real business email address.
     email: 'hello@carpathia.tech',
     // TODO: replace with the real Calendly (or other scheduler) URL.
-    calendlyUrl: 'https://calendly.com/your-handle/intro-call',
+    calendlyUrl: 'https://calendly.com/carpathiatech/intro-call',
     // TODO: paste the Formspree form ID (e.g. 'xayzwklm'). Form posts to
     //       https://formspree.io/f/<FORMSPREE_FORM_ID>
     formspreeFormId: 'FORMSPREE_FORM_ID',
